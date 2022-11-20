@@ -21,11 +21,11 @@
             </a>
         </nav>
 
-        <div class="container">
+        <div class="p-4">
             <div class="row justify-content-center">
 
-            <div class="col"><div><canvas width="10rem" height="10rem" id="myChart"></canvas></div></div>
-            <div class="col"><div><canvas width="10rem" height="10rem" id="myChart2"></canvas></div></div>
+            <div class="col-6"><div><canvas id="myChart" height="257rem"></canvas></div></div>
+            <div class="col-6"><div><canvas id="myChart2" height="240rem"></canvas></div></div>
                 
                 
             </div>
@@ -34,46 +34,71 @@
     </body>
     <script>
 
-        let config = {
+    let borderWidth = 3;
+    let fontSize = 12;
+    let legendFontSize = 14;
+    let lineWidth = 2;
+    let gridLinesColor = 'RGB(0, 0, 0)';
+
+    let config = {
         type: 'line',
         data: {
             datasets: [ {
                 label: '12:00 PM',
                 backgroundColor: 'RGB(54, 162, 235)',
                 borderColor: 'RGB(54, 162, 235)',
-                borderWidth: 1,
+                borderWidth: borderWidth,
                 fill: false},
             {   
                 label: '8:00 AM',
                 backgroundColor: 'RGB(255, 99, 132)',
                 borderColor: 'RGB(255, 99, 132)',
-                borderWidth: 1,
+                borderWidth: borderWidth,
                 fill: false
             },
             {   
                 label: '6:00 PM',
                 backgroundColor: 'RGB(255, 205, 86)',
                 borderColor: 'RGB(255, 205, 86)',
-                borderWidth: 1,
+                borderWidth: borderWidth,
                 fill: false
             }]},
             
-        plugins: [ChartDataSource],
+        plugins: [ChartDataSource,],
         options: {
+
+            legend: {
+                display: true,
+                labels: {
+                    fontSize: legendFontSize,
+                }
+            },
+
             elements: {
-                    point:{
-                        radius: 0
-                    }
-                },
-            // title: {
-            //     display: true,
-            //     text: 'Ph data'
-            // },
+                point:{
+                    radius: 0
+                }
+            },
+         /*    title: {
+                display: true,
+                fontSize: 40
+                text: 'Ph data'
+                }, */
             scales: {
                 xAxes: [{
                     scaleLabel: {
                         display: true,
-                        labelString: 'Time'
+                        labelString: 'time (s)',
+                        fontSize: legendFontSize
+                    },
+                    gridLines: {
+                        display:false,
+                        lineWidth: lineWidth,
+                        //color: gridLinesColor
+                    },
+
+                    ticks: {
+                        fontSize: fontSize
                     }
                 }],
                 yAxes: [ {
@@ -85,12 +110,22 @@
                     }, */
                     scaleLabel: {
                         display: true,
-                        labelString: 'Kohms',
+                        labelString: 'kOhms (Ω)',
+                        fontSize: legendFontSize
                         
+                    },
+                    gridLines: {
+                        display:false,
+                        lineWidth: lineWidth,
+                        //color: gridLinesColor
+                    },
+                    ticks: {
+                        fontSize: fontSize
                     }
                 }]
             },
             plugins: {
+
                 datasource: {
                     type: 'sheet',
                     url: 'data/data0.xlsx',
@@ -99,22 +134,25 @@
                     indexLabels: 'Sheet1!A2:A4266',
                     data: 'Sheet1!B1:D4266'
                 },
+
+
             }
         }
     };
+
 
 
     const ctx = document.getElementById('myChart').getContext('2d');
     myChart2 = new Chart(ctx, config);
 
     const data = {
-    labels: ['Sample 1','Sample 2','Sample 3','Sample 4','Sample 5','Sample 6','Sample 7'],
+    labels: ['sample 1','sample 2','sample 3','sample 4','sample 5','sample 6','sample 7'],
     datasets: [{
         label: 'pH',
         data: [4.5, 8.3, 2.8, 5, 3.9, 5.2, 4.1],
-        backgroundColor: 'rgba(54,162,235,0.2)',
-        borderColor: 'rgb(54,162,235)',
-        borderWidth: 1
+        backgroundColor: ['rgb(251,169,35)','rgb(1,146,71)','rgb(245,126,38)','rgb(244,236,7)','rgb(251,169,35)','rgb(244,236,7)','rgb(251,169,35)'],
+        //borderColor: 'rgb(54,162,235)',
+        borderWidth: 0
     }]
     };
 
@@ -122,29 +160,69 @@
     config = {
         type: 'bar',
         data: data,
+        borderWidth:0,
         options: {
+            legend: {
+                display: true,
+                labels: {
+                    fontSize: legendFontSize,
+                }
+            },
+
             plugins: {
-      legend: {
-        position: 'top',
-      },
-      title: {
-        display: true,
-        text: 'Chart.js Bar Chart'
-      }
-    },
+
+                legend: {
+                    position: 'top',
+                },
+                
+                title: {
+                    display: true,
+                    text: 'Chart.js Bar Chart'
+                }
+            },
             scales: {
-            y: {
-                beginAtZero: true
-            }
+
+                xAxes: [{
+
+                    scaleLabel: {
+                        fontSize: fontSize
+                    },
+                    gridLines: {
+                        display:false,
+                        //drawBorder: false
+                        lineWidth: lineWidth,
+                        //color: gridLinesColor
+                    },
+                    ticks: {
+                        fontSize: fontSize
+                    }
+                }],
+                yAxes: [ {
+
+                    scaleLabel: {
+                        fontSize: fontSize
+                    },
+                    gridLines: {
+                        display:false,
+                        lineWidth: lineWidth,
+                        //color: gridLinesColor
+                    },
+                    ticks: {
+                        fontSize: fontSize
+                    }
+                }],
+
+
+
+                y: {
+                    beginAtZero: true
+                }
             }
         },
     };
 
     const ctx2 = document.getElementById('myChart2').getContext('2d');
     myChart = new Chart(ctx2, config);
-
-
-    
 
     </script>
 
