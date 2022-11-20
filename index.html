@@ -34,10 +34,10 @@
     </body>
     <script>
 
-    let borderWidth = 3;
-    let fontSize = 12;
-    let legendFontSize = 14;
-    let lineWidth = 2;
+    let borderWidth = 4;
+    let fontSize = 18;
+    let legendFontSize = 18;
+    let lineWidth = 4;
     let gridLinesColor = 'RGB(0, 0, 0)';
 
     let config = {
@@ -45,32 +45,33 @@
         data: {
             datasets: [ {
                 label: '12:00 PM',
-                backgroundColor: 'RGB(54, 162, 235)',
-                borderColor: 'RGB(54, 162, 235)',
+                backgroundColor: '#33608B',
+                borderColor: '#33608B',
                 borderWidth: borderWidth,
                 fill: false},
             {   
                 label: '8:00 AM',
-                backgroundColor: 'RGB(255, 99, 132)',
-                borderColor: 'RGB(255, 99, 132)',
+                backgroundColor: '#403D81',
+                borderColor: '#403D81',
                 borderWidth: borderWidth,
                 fill: false
             },
             {   
                 label: '6:00 PM',
-                backgroundColor: 'RGB(255, 205, 86)',
-                borderColor: 'RGB(255, 205, 86)',
+                backgroundColor: '#8E9CFF',
+                borderColor: '#8E9CFF',
                 borderWidth: borderWidth,
                 fill: false
             }]},
             
-        plugins: [ChartDataSource,],
+        
         options: {
 
             legend: {
                 display: true,
                 labels: {
-                    fontSize: legendFontSize,
+                    fontColor: "black",
+                    fontSize: legendFontSize
                 }
             },
 
@@ -89,18 +90,35 @@
                     scaleLabel: {
                         display: true,
                         labelString: 'time (s)',
+                        fontColor: "black",
                         fontSize: legendFontSize
                     },
                     gridLines: {
                         display:false,
                         lineWidth: lineWidth,
-                        //color: gridLinesColor
+                        color: gridLinesColor
                     },
 
                     ticks: {
+                        fontColor: "black",
                         fontSize: fontSize
                     }
+                },
+
+                {
+                    position: 'top',
+                    ticks: {
+                        display: false,
+
+                    },
+                    gridLines: {
+                        display: false,
+                        drawTicks: false,
+                        lineWidth: lineWidth,
+                        color: gridLinesColor
+                    },
                 }],
+
                 yAxes: [ {
                     //id: 'precipitation',
                     type: 'logarithmic',
@@ -110,18 +128,33 @@
                     }, */
                     scaleLabel: {
                         display: true,
-                        labelString: 'kOhms (Ω)',
-                        fontSize: legendFontSize
-                        
+                        labelString: 'resistance (kΩ)',
+                        fontColor: "black",
+                        fontSize: legendFontSize                       
                     },
                     gridLines: {
                         display:false,
                         lineWidth: lineWidth,
-                        //color: gridLinesColor
+                        color: gridLinesColor
                     },
                     ticks: {
+                        fontColor: "black",
                         fontSize: fontSize
                     }
+                },
+
+                {
+                    position: 'right',
+                    ticks: {
+                        display: false,
+
+                    },
+                    gridLines: {
+                        display: false,
+                        drawTicks: false,
+                        lineWidth: lineWidth,
+                        color: gridLinesColor
+                    },
                 }]
             },
             plugins: {
@@ -137,7 +170,8 @@
 
 
             }
-        }
+        },
+        plugins: [ChartDataSource],
     };
 
 
@@ -150,7 +184,7 @@
     datasets: [{
         label: 'pH',
         data: [4.5, 8.3, 2.8, 5, 3.9, 5.2, 4.1],
-        backgroundColor: ['rgb(251,169,35)','rgb(1,146,71)','rgb(245,126,38)','rgb(244,236,7)','rgb(251,169,35)','rgb(244,236,7)','rgb(251,169,35)'],
+        backgroundColor: ['#CAD71E','#83D14A','#42B971','#259E86','#26808D','#33608B','#403D81'],
         //borderColor: 'rgb(54,162,235)',
         borderWidth: 0
     }]
@@ -166,6 +200,7 @@
                 display: true,
                 labels: {
                     fontSize: legendFontSize,
+                    fontColor: "black",
                 }
             },
 
@@ -185,34 +220,72 @@
                 xAxes: [{
 
                     scaleLabel: {
-                        fontSize: fontSize
+                        //display: true,
+                        labelString: 'pH levels',
+                        fontSize: legendFontSize,
+                        fontColor: "black"
+                        
                     },
                     gridLines: {
                         display:false,
                         //drawBorder: false
                         lineWidth: lineWidth,
-                        //color: gridLinesColor
+                        color: gridLinesColor
                     },
                     ticks: {
+                        fontColor: "black",
                         fontSize: fontSize
                     }
+                },
+
+                {
+                    position: 'top',
+                    ticks: {
+                        display: false,
+
+                    },
+                    gridLines: {
+                        display: false,
+                        drawTicks: false,
+                        lineWidth: lineWidth,
+                        color: gridLinesColor
+                    },
                 }],
+
+
                 yAxes: [ {
 
                     scaleLabel: {
-                        fontSize: fontSize
+                        display: true,
+                        labelString: 'pH levels',
+                        fontSize: legendFontSize,
+                        fontColor: "black",
+                        
                     },
                     gridLines: {
                         display:false,
                         lineWidth: lineWidth,
-                        //color: gridLinesColor
+                        color: gridLinesColor
                     },
                     ticks: {
+                        fontColor: "black",
                         fontSize: fontSize
                     }
+                },
+
+                {
+                    position: 'right',
+                    ticks: {
+                        display: false,
+
+                    },
+                    gridLines: {
+                        display: false,
+                        drawTicks: false,
+                        lineWidth: lineWidth,
+                        color: gridLinesColor
+                    },
                 }],
-
-
 
                 y: {
                     beginAtZero: true
